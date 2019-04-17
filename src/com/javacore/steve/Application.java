@@ -56,19 +56,36 @@ public class Application {
         values.add("Tramp");
 
 
-        values.add("2");
-        values.add("Donald");
-        values.add("Timoshenko");
+        values2.add("2");
+        values2.add("Donald");
+        values2.add("Timoshenko");
         criminalTable.insert(new Record(values));
         criminalTable.insert(new Record(values2));
 
-        List<String> result = criminalTable.selectField("id");
-        for (int i = 0; i <  result.size(); i++ ){
-            System.out.println(result);
+       // запрос
+        String theRequest = "SELECT id, lastName,";
+        List<String> requestColumNames = new ArrayList<>();
+        int d =7;
+        for(int i = 7; i < theRequest.length() ; i++){
+            char c = theRequest.charAt(i);
+                        if(c == ','){
+                requestColumNames.add(theRequest.substring(d, i));
+                d = i+2; //учитывая пробел и ,
+            }
+
         }
-        //for(String s: result){
-         //   System.out.println(s);
-        //}
+                // нужно распарсить запрос
+
+
+        Record request = new Record(requestColumNames);
+        criminalTable.select(request);
+
+        /*List<String> result = criminalTable.selectField("firstName");
+        for(String s: result){
+            System.out.println(s);
+        }
+        */
+
 
        // ConsoleCanvas canvas = new ConsoleCanvas(15,15);
         //canvas.drawSqareAt(2, 2, 3 );

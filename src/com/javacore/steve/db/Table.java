@@ -29,7 +29,74 @@ public class Table {
 
     //select id, firstName, lastName
     public void select(Record query) {
+        Record crim = new Record(query.values);
 
+        Thread loading = new Thread() {
+            @Override
+            public void run() {
+                System.out.print("Start searching");
+                for (int i = 0; i < 10; i++) {
+                    System.out.print(".");
+                    try {
+                        Thread.sleep(500);
+                         } catch (InterruptedException e) {
+                    }
+                }
+                System.out.println("Done");
+            }
+
+
+
+        };
+
+        Thread searching = new Thread() {
+            @Override
+            public void run() {
+
+                for (int i = 0; i < 10; i++) {
+                    try {
+                        Thread.sleep(500);
+
+                    } catch (InterruptedException e) {
+                    }
+
+
+                }
+
+
+                //System.out.print(query.values.get(1));
+
+
+            }
+
+
+
+        };
+        Thread result = new Thread() {
+            @Override
+            public void run() {
+
+                for (int i = 0; i < 10; i++) {
+                System.out.println("3 started");
+
+                }
+
+            }
+
+
+
+        };
+
+        loading.start();
+        searching.start();
+        try {
+            loading.join();
+            searching.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+         result.start();
 
         // между записями 100 мс слип
         //лодинг...... и потом таблица
