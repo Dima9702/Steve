@@ -1,10 +1,15 @@
 package com.javacore.steve;
 
 import com.javacore.steve.common.ConsoleCanvas;
+import com.javacore.steve.db.DataBase;
 import com.javacore.steve.db.Record;
 import com.javacore.steve.db.Table;
 import com.javacore.steve.profile.ProfileController;
 import com.javacore.steve.state.ApplicationState;
+
+
+
+import java.util.Arrays;
 import java.util.Scanner;
 
 import java.util.ArrayList;
@@ -31,11 +36,12 @@ public class Application {
     /**
      * the field AUTHOR stores the name of the application's author
      */
-    static public final String AUTHOR = "Daria";
+    static public final String AUTHOR = "Dmitriy Mikhailov";
     /**
      * the field VERSION stores the version data
      */
-    static public final String VERSION = "0.0.0";
+    static public final String VERSION = "0.0.1";
+
     static ApplicationState currentState;
 
     /**
@@ -43,7 +49,39 @@ public class Application {
      *
      * @param args the arguments of the programme.
      */
+
+
     public static void main(String[] args) {
+        List<String[]> records = DataBase.readDataFile("C:\\EpamProj");
+
+
+        Table table = new Table("Criminals", Arrays.asList(new String[]{"id", "name", "deceased"}));
+        Record record = new Record(table);
+        record.setValues(new String[]{"100", "Anthony Soprano", "false"});
+        try {
+            System.out.println(record.getInt("id"));
+            System.out.println(record.getBoolean("deceased"));
+        } catch (Record.FieldNotFoundExeption ex) {
+            ex.printStackTrace();
+        } catch (NumberFormatException nfe) {
+            nfe.printStackTrace();
+        }
+
+        System.out.println("All is ok, all exceptions have been caught!");
+
+
+        /*try {
+            rec.getInt("id");
+
+        } catch (Record.FieldNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (NumberFormatException nfe) {
+            nfe.printStackTrace();
+        }
+
+    }*/
+
+        /*
         List<String> colums = new ArrayList<>();
         colums.add("id");
         colums.add("firstName");
@@ -74,11 +112,21 @@ public class Application {
             }
 
         }
+            */
+
+
+
+
+
+
+
+
+
                 // нужно распарсить запрос
 
 
-        Record request = new Record(requestColumNames);
-        criminalTable.select(request);
+      //  Record request = new Record(requestColumNames);
+      //  criminalTable.select(request);
 
         /*List<String> result = criminalTable.selectField("firstName");
         for(String s: result){

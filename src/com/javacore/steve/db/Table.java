@@ -8,7 +8,7 @@ public class Table {
 
     protected String name;
 
-    protected List<String> colums;
+    protected List<String> columns;
 
     protected List<Record> records;
 
@@ -16,87 +16,95 @@ public class Table {
         records = new ArrayList<Record>();
     }
 
-    public Table(String name, List<String> colums)
-    {
-       this.name = name;
-        this.colums = colums;
+    public Table(String name, List<String> colums) {
+        this.name = name;
+        this.columns = columns;
 
     }
 
     public void insert(Record record) {
+
         records.add(record);
-    };
+    }
 
     //select id, firstName, lastName
-    public void select(Record query) {
-        Record crim = new Record(query.values);
 
-        Thread loading = new Thread() {
-            @Override
-            public void run() {
-                System.out.print("Start searching");
-                for (int i = 0; i < 10; i++) {
-                    System.out.print(".");
-                    try {
-                        Thread.sleep(500);
-                         } catch (InterruptedException e) {
-                    }
-                }
-                System.out.println("Done");
-            }
+    ///обработчик запросов
 
 
 
-        };
-
-        Thread searching = new Thread() {
-            @Override
-            public void run() {
-
-                for (int i = 0; i < 10; i++) {
-                    try {
-                        Thread.sleep(500);
-
-                    } catch (InterruptedException e) {
-                    }
 
 
-                }
+      public void select(Record query) {/*
+
+          Record crim = new Record(query.values);
+
+          Thread loading = new Thread() {
+              @Override
+              public void run() {
+                  System.out.print("Start searching");
+                  for (int i = 0; i < 10; i++) {
+                      System.out.print(".");
+                      try {
+                          Thread.sleep(500);
+                      } catch (InterruptedException e) {
+                      }
+                  }
+                  System.out.println("Done");
+              }
 
 
-                //System.out.print(query.values.get(1));
+          };
+
+          Thread searching = new Thread() {
+              @Override
+              public void run() {
+
+                  for (int i = 0; i < 10; i++) {
+                      try {
+                          Thread.sleep(500);
+
+                      } catch (InterruptedException e) {
+                      }
 
 
-            }
+                  }
 
 
-
-        };
-        Thread result = new Thread() {
-            @Override
-            public void run() {
-
-                for (int i = 0; i < 10; i++) {
-                System.out.println("3 started");
-
-                }
-
-            }
+                  //System.out.print(query.values.get(1));
 
 
+              }
 
-        };
 
-        loading.start();
-        searching.start();
-        try {
-            loading.join();
-            searching.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+          };
+          Thread result = new Thread() {
+              @Override
+              public void run() {
 
-         result.start();
+                  for (int i = 0; i < 10; i++) {
+
+
+                  }
+                  System.out.println("This is the answer");
+              }
+
+
+          };
+
+          loading.start();
+          searching.start();
+          try {
+              loading.join();
+              searching.join();
+          } catch (InterruptedException e) {
+              e.printStackTrace();
+          }
+
+          result.start();*/
+      }
+
+   // ---------------------------------------------------------------------------------------
 
         // между записями 100 мс слип
         //лодинг...... и потом таблица
@@ -108,11 +116,16 @@ public class Table {
     //--------------------------------
     //1         Vladimir     Trump
 
-    };
+    //};
 
+
+
+    public List<String> getColums(){
+        return columns;
+    }
 
     public  List<String> selectField(String fieldName){
-        int index = colums.indexOf(fieldName);
+        int index = columns.indexOf(fieldName);
         Iterator it = records.iterator();
         List<String> result = new ArrayList<>();
         while(it.hasNext()){
@@ -121,7 +134,8 @@ public class Table {
 
         }
     return result;
-    };
-
-
+    }
 }
+
+
+
