@@ -120,7 +120,7 @@ public class Table {
 
 
 
-    public List<String> getColums(){
+    public List<String> getColumns(){
         return columns;
     }
 

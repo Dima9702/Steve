@@ -52,11 +52,12 @@ public class Application {
 
 
     public static void main(String[] args) {
-        List<String[]> records = DataBase.readDataFile("C:\\EpamProj");
+        List<String[]> records = DataBase.readDataFile("C:\\EpamProj\\ser.txt");
 
 
         Table table = new Table("Criminals", Arrays.asList(new String[]{"id", "name", "deceased"}));
         Record record = new Record(table);
+
         record.setValues(new String[]{"100", "Anthony Soprano", "false"});
         try {
             System.out.println(record.getInt("id"));
@@ -65,6 +66,8 @@ public class Application {
             ex.printStackTrace();
         } catch (NumberFormatException nfe) {
             nfe.printStackTrace();
+        }catch (NullPointerException np) {
+            np.printStackTrace();
         }
 
         System.out.println("All is ok, all exceptions have been caught!");

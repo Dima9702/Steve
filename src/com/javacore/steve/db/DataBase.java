@@ -61,7 +61,9 @@ public class DataBase {
 
             } catch(IOException ioex){
 
-            } finally{
+            }catch (NullPointerException np) {
+            np.printStackTrace();
+        }finally{
                 try {
                     fis.close();
                 } catch (IOException e) {

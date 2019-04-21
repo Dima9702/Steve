@@ -14,9 +14,9 @@ public class Record {
         values = new ArrayList<>();
     }
 
-   /* public Record(Table table) {
+    public Record(Table table) {
         columns = table.getColumns();
-    }*/
+    }
     public void setValues(String[] values){
         this.values.clear();
         this.values = Arrays.asList(values);
@@ -30,6 +30,7 @@ public class Record {
             throw new FieldNotFoundExeption("FIELD NOT FOUND " + fieldName);
         }
         return Integer.parseInt(values.get(index));
+
     }
 
     public boolean getBoolean(String fieldName) throws FieldNotFoundExeption {
@@ -44,6 +45,11 @@ public class Record {
     public class FieldNotFoundExeption extends Exception {
         public FieldNotFoundExeption(String mes) {
             super(mes);
+        }
+    }
+    public class NullPointerException extends Exception {
+        public NullPointerException(String mes1) {
+            super(mes1);
         }
     }
 }
