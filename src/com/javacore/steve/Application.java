@@ -29,39 +29,39 @@ import java.util.List;
 
 
 public class Application {
-    /**
-     * The field APP_NAME stores the name of the application
-     */
-    static public final String APP_NAME = "Steve";
-    /**
-     * the field AUTHOR stores the name of the application's author
-     */
-    static public final String AUTHOR = "Dmitriy Mikhailov";
-    /**
-     * the field VERSION stores the version data
-     */
-    static public final String VERSION = "0.0.1";
 
+    static public final String APP_NAME = "Steve";
+    static public final String AUTHOR = "Dmitriy Mikhailov";
+    static public final String VERSION = "0.0.1";
     static ApplicationState currentState;
 
-    /**
-     * The main entry point function.
-     *
-     * @param args the arguments of the programme.
-     */
 
 
     public static void main(String[] args) {
         List<String[]> records = DataBase.readDataFile("C:\\EpamProj\\ser.txt");
 
-
         Table table = new Table("Criminals", Arrays.asList(new String[]{"id", "name", "deceased"}));
-        Record record = new Record(table);
+        for(int i = 0; i < records.size(); i++){
+            Record record = new Record(table);
+            record.setValues(records.get(i));
+            table.insert(record);
+        }
 
-        record.setValues(new String[]{"100", "Anthony Soprano", "false"});
+       // record.setValues(new String[]{"100", "Anthony Soprano", "false"});
+       // record.setValues(new String[]{"100", "Anthony Soprano", "false"});
+
+
+
+
+
         try {
-            System.out.println(record.getInt("id"));
-            System.out.println(record.getBoolean("deceased"));
+            List<Integer> ids = new ArrayList<>();
+            for(Record record : table.getRecords()) {
+                ids.add(record.getInt("id"));
+            }
+            //System.out.println(table.getRecords());
+            //System.out.println(record.getBoolean("deceased"));
+            System.out.println(ids);
         } catch (Record.FieldNotFoundExeption ex) {
             ex.printStackTrace();
         } catch (NumberFormatException nfe) {
@@ -102,7 +102,7 @@ public class Application {
         values2.add("Timoshenko");
         criminalTable.insert(new Record(values));
         criminalTable.insert(new Record(values2));
-
+*/
        // запрос
         String theRequest = "SELECT id, lastName,";
         List<String> requestColumNames = new ArrayList<>();
@@ -115,7 +115,7 @@ public class Application {
             }
 
         }
-            */
+
 
 
 
@@ -136,61 +136,24 @@ public class Application {
             System.out.println(s);
         }
         */
+        ConsoleCanvas canvas = new ConsoleCanvas(120,80);
+       canvas.drawSqareAt(48, 2, 30,20, canvas  );
+       canvas.drawCircleAt(63, 10, 4,canvas );
+       canvas.drawSqareAt(51, 15, 24,6, canvas );
 
+       canvas.draw();
 
-       // ConsoleCanvas canvas = new ConsoleCanvas(15,15);
-        //canvas.drawSqareAt(2, 2, 3 );
         //canvas.setSimbolAt(0,2,'A');
         //canvas.draw();
 
-            // 2 примера создания потоков
 
-       /* Runnable runnable1 = new Runnable() {
-            @Override
-            public void run() {
-
-                  for (int i = 0; i < 10; i++) {
-                        System.out.print("-");
-                      try {
-                          Thread.sleep(100);
-
-                      } catch (InterruptedException e) {
-                      }
-                    }
-                }
-
-
-
-
-            };
-
-
-        //Создание второго потока
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                for (int i = 0; i < 10; i++) {
-                    System.out.print(".");
-                    try {
-                        Thread.sleep(100);
-                        System.out.println(this.getState());
-                    } catch (InterruptedException e) {
-                    }
-                }
-            }
-
-
-
-        };
-        */
-        // конец примеров
 
         // пример потока для графики
 
         /*Thread thread = new Thread() {
             @Override
             public void run() {
-                for (int i = 0; i < 20; i++) {
+                for (int i = 0; i < 20; i++) {3
                     System.out.print(".");
                     try {
                         Thread.sleep(500);

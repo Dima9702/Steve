@@ -16,10 +16,9 @@ public class Table {
         records = new ArrayList<Record>();
     }
 
-    public Table(String name, List<String> colums) {
+    public Table(String name, List<String> columns) {
         this.name = name;
         this.columns = columns;
-
     }
 
     public void insert(Record record) {
@@ -134,6 +133,10 @@ public class Table {
 
         }
     return result;
+    }
+
+    public List<Record> getRecords() {
+        return records;
     }
 }
 

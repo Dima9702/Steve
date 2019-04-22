@@ -24,11 +24,14 @@ public class Record {
 
 
     public int getInt(String fieldName) throws FieldNotFoundExeption {
+
         int index = columns.indexOf(fieldName);
+
 
         if(index == -1) {
             throw new FieldNotFoundExeption("FIELD NOT FOUND " + fieldName);
         }
+
         return Integer.parseInt(values.get(index));
 
     }

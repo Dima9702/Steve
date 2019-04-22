@@ -47,14 +47,14 @@ public class DataBase {
 
     public static List<String[]> readDataFile(String fileName) {
         FileInputStream fis = null;
-        List<java.lang.String[]> result = new ArrayList<>();
+        List<String[]> result = new ArrayList<>();
         BufferedReader br;
         try {
             fis = new FileInputStream(fileName);
             br = new BufferedReader(new InputStreamReader(fis));
             String line;
             while ((line = br.readLine()) != null) {
-                System.out.println("Sourse line: " + line);
+                //System.out.println("Sourse line: " + line);
                 result.add(line.split(";"));
             }
             }catch(FileNotFoundException fnfe){
